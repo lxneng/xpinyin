@@ -12,3 +12,4 @@ translate chinese hanzi to pinyin by python, inspired by flyerhzm's chinese_piny
     In [4]: p.get_initials(u"上")
     Out[4]: 'S'
 
+请输入utf8编码汉字

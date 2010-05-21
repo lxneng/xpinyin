@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 """
+Translate chinese hanzi to pinyin by python
 Created by Eric Lo on 2010-05-20.
 Copyright (c) 2010 __lxneng@gmail.com__. http://lxneng.com All rights reserved.
 """
