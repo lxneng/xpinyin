@@ -1,5 +1,5 @@
 translate chinese hanzi to pinyin by python, inspired by flyerhzm’s
-chinese\_pinyin gem
+`chinese\_pinyin`_ gem
 
 usage
 -----
@@ -17,3 +17,5 @@ usage
     Out[4]: 'S'
 
 请输入utf8编码汉字
+
+.. _chinese\_pinyin: https://github.com/flyerhzm/chinese_pinyin
