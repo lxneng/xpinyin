@@ -1,14 +1,18 @@
-translate chinese hanzi to pinyin by python, inspired by flyerhzm's chinese_pinyin gem
+translate chinese hanzi to pinyin by python, inspired by flyerhzm’s
+chinese\_pinyin gem
 
-## usage
+usage
+-----
+
+::
 
     In [1]: from xpinyin import xpinyin
-    
+
     In [2]: p = xpinyin.Pinyin()
-    
+
     In [3]: p.get_pinyin(u"上海")
     Out[3]: 'shanghai'
-    
+
     In [4]: p.get_initials(u"上")
     Out[4]: 'S'
 
