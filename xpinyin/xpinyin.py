@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding=utf-8
-"""
-Translate chinese hanzi to pinyin by python
+
+"""Translate chinese hanzi to pinyin by python
 Created by Eric Lo on 2010-05-20.
 Copyright (c) 2010 __lxneng@gmail.com__. http://lxneng.com All rights reserved.
 """
@@ -12,7 +12,7 @@ VERSION = '0.2'
 
 
 class Pinyin():
-    '''translate chinese hanzi to pinyin by python, inspired by flyerhzm’s
+    """translate chinese hanzi to pinyin by python, inspired by flyerhzm’s
     `chinese\_pinyin`_ gem
 
     usage
@@ -25,7 +25,8 @@ class Pinyin():
         In [4]: p.get_initials(u"上")
         Out[4]: 'S'
     请输入utf8编码汉字
-    .. _chinese\_pinyin: https://github.com/flyerhzm/chinese_pinyin'''
+    .. _chinese\_pinyin: https://github.com/flyerhzm/chinese_pinyin
+    """
 
     data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), \
             'Mandarin.dat')
