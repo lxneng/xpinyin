@@ -6,9 +6,11 @@ Created by Eric Lo on 2010-05-20.
 Copyright (c) 2010 __lxneng@gmail.com__. http://lxneng.com All rights reserved.
 """
 
+
 import os.path
 
-VERSION = '0.2'
+
+VERSION = '0.3'
 
 
 class Pinyin():
@@ -18,8 +20,8 @@ class Pinyin():
     usage
     -----
     ::
-        In [1]: from xpinyin import xpinyin
-        In [2]: p = xpinyin.Pinyin()
+        In [1]: from xpinyin import Pinyin
+        In [2]: p = Pinyin()
         In [3]: p.get_pinyin(u"上海")
         Out[3]: 'shanghai'
         In [4]: p.get_initials(u"上")
