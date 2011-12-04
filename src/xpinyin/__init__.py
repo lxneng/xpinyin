@@ -38,9 +38,8 @@ class Pinyin():
         for line in open(self.data_path):
             k, v = line.split('\t')
             self.dict[k] = v
-        self.splitter = ''
 
-    def get_pinyin(self, chars=u'你好'):
+    def get_pinyin(self, chars=u'你好', splitter=''):
         result = []
         for char in chars:
             key = "%X" % ord(char)
@@ -49,7 +48,7 @@ class Pinyin():
                         .lower())
             except:
                 result.append(char)
-        return self.splitter.join(result)
+        return splitter.join(result)
 
     def get_initials(self, char=u'你'):
         try:
