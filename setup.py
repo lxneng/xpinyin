@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from setuptools import setup, find_packages
 
-version = '0.3'
+version = '0.4.1'
 setup(name="xpinyin",
       version=version,
       description="translate chinese hanzi to pinyin by python",

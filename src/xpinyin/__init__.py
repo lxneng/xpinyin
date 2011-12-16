@@ -6,6 +6,7 @@ Created by Eric Lo on 2010-05-20.
 Copyright (c) 2010 __lxneng@gmail.com__. http://lxneng.com All rights reserved.
 """
 
+__import__('pkg_resources').declare_namespace(__name__)
 
 import os.path
 
