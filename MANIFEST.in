@@ -1,1 +1,2 @@
+include *.rst
 include src/xpinyin/Mandarin.dat
