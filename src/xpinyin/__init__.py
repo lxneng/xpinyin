@@ -1,17 +1,6 @@
 #!/usr/bin/env python
-# coding=utf-8
-
-"""Translate chinese hanzi to pinyin by python
-Created by Eric Lo on 2010-05-20.
-Copyright (c) 2010 __lxneng@gmail.com__. http://lxneng.com All rights reserved.
-"""
-
-__import__('pkg_resources').declare_namespace(__name__)
-
+# -*- coding: utf-8 -*-
 import os.path
-
-
-VERSION = '0.3'
 
 
 class Pinyin():
@@ -31,7 +20,7 @@ class Pinyin():
     .. _chinese\_pinyin: https://github.com/flyerhzm/chinese_pinyin
     """
 
-    data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), \
+    data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
             'Mandarin.dat')
 
     def __init__(self):
@@ -45,7 +34,7 @@ class Pinyin():
         for char in chars:
             key = "%X" % ord(char)
             try:
-                result.append(self.dict[key].split(" ")[0].strip()[:-1]\
+                result.append(self.dict[key].split(" ")[0].strip()[:-1]
                         .lower())
             except:
                 result.append(char)
