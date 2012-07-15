@@ -3,7 +3,7 @@
 import os.path
 
 
-class Pinyin():
+class Pinyin(object):
     """translate chinese hanzi to pinyin by python, inspired by flyerhzm’s
     `chinese\_pinyin`_ gem
 
