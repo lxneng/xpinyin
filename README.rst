@@ -1,6 +1,13 @@
 translate chinese hanzi to pinyin by python, inspired by flyerhzm’s
 `chinese\_pinyin`_ gem
 
+install
+----------
+
+::
+    pip install xpinyin
+
+
 usage
 -----
 
