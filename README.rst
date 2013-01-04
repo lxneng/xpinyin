@@ -5,6 +5,7 @@ install
 ----------
 
 ::
+
     pip install xpinyin
 
 
