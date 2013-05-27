@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 
 setup(name="xpinyin",
-      version='0.4.6',
+      version='0.4.7',
       description="translate chinese hanzi to pinyin by python",
       author="Eric Lo",
       author_email="lxneng@gmail.com",
