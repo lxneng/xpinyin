@@ -1,7 +1,13 @@
+xpinyin
+==========
+
+.. image:: https://travis-ci.org/lxneng/xpinyin.png?branch=master
+   :target: https://travis-ci.org/lxneng/xpinyin
+
 translate chinese hanzi to pinyin by python, inspired by flyerhzm’s
 `chinese\_pinyin`_ gem
 
-install
+Install
 ----------
 
 ::
@@ -9,7 +15,7 @@ install
     pip install xpinyin
 
 
-usage
+Usage
 -----
 
 ::

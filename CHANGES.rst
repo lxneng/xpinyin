@@ -5,6 +5,9 @@ Changelog
 0.4.8 - Jun. 16, 2013
 ----------------------
 
+- add travis status image to README.rst
+  [lxneng]
+
 - add .travis.yml
   [lxneng]
 
