@@ -15,6 +15,7 @@ setup(name="xpinyin",
       author_email="lxneng@gmail.com",
       url="https://github.com/lxneng/xpinyin",
       packages=find_packages('src'),
+      test_suite='xpinyin.tests',
       package_dir={'': 'src'},
       include_package_data=True,
       license="MIT License")
