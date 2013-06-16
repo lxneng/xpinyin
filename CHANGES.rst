@@ -5,6 +5,9 @@ Changelog
 0.4.8 - Jun. 16, 2013
 ----------------------
 
+- add .travis.yml
+  [lxneng]
+
 - 添加测试
   [lxneng]
 
