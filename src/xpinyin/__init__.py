@@ -22,7 +22,8 @@ class Pinyin(object):
     .. _chinese\_pinyin: https://github.com/flyerhzm/chinese_pinyin
     """
 
-    data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'Mandarin.dat')
+    data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                             'Mandarin.dat')
 
     def __init__(self, data_path=data_path):
         self.dict = {}
@@ -30,13 +31,14 @@ class Pinyin(object):
             k, v = line.split('\t')
             self.dict[k] = v
 
-    def get_pinyin(self, chars=u'你好', splitter=u''):
+    def get_pinyin(self, chars=u'你好', splitter=u'-'):
         result = []
         flag = 1
         for char in chars:
             key = "%X" % ord(char)
             try:
-                result.append(self.dict[key].split(" ")[0].strip()[:-1].lower())
+                result.append(
+                    self.dict[key].split(" ")[0].strip()[:-1].lower())
                 flag = 1
             except KeyError:
                 if flag:
@@ -53,11 +55,17 @@ class Pinyin(object):
         except KeyError:
             return char
 
-    def get_initials(self, chars=u'你好', splitter=u''):
+    def get_initials(self, chars=u'你好', splitter=u'-'):
         result = []
-        try:
-            for char in chars:
+        flag = 1
+        for char in chars:
+            try:
                 result.append(self.dict["%X" % ord(char)].split(" ")[0][0])
-            return splitter.join(result)
-        except KeyError:
-            return ""
+                flag = 1
+            except KeyError:
+                if flag:
+                    result.append(char)
+                else:
+                    result[-1] += char
+
+        return splitter.join(result)

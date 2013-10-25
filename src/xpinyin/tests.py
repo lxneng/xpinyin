@@ -3,9 +3,9 @@ import unittest
 
 
 class PinyinTests(unittest.TestCase):
-
     def Pinyin(self, *a, **kw):
         from xpinyin import Pinyin
+
         return Pinyin(*a, **kw)
 
     def setUp(self):
@@ -18,7 +18,14 @@ class PinyinTests(unittest.TestCase):
         self.assertEqual(self.p.get_pinyin(u'上海', splitter=u''), u'shanghai')
 
     def test_get_pinyin_mixed_words(self):
-        self.assertEqual(self.p.get_pinyin(u'Apple发布iOS7'), u'Apple-fa-bu-iOS7')
+        self.assertEqual(self.p.get_pinyin(u'Apple发布iOS7', splitter=u'-'),
+                         u'Apple-fa-bu-iOS7')
+
+    def test_get_initial(self):
+        self.assertEqual(self.p.get_initial(u'你'), u'N')
 
     def test_get_initials(self):
-        self.assertEqual(self.p.get_initials(u'你'), u'N')
+        self.assertEqual(self.p.get_initials(u'你好'), u'N-H')
+
+    def test_get_initialsMinus(self):
+        self.assertEqual(self.p.get_initials(u'你好', u''), u'NH')
