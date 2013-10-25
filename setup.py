@@ -8,12 +8,12 @@ README = open(os.path.join(here, 'README.rst')).read()
 CHANGES = open(os.path.join(here, 'CHANGES.rst')).read()
 
 setup(name="xpinyin",
-      version='0.4.8',
+      version='0.4.9',
       description="translate chinese hanzi to pinyin by python",
       long_description=README + '\n\n' + CHANGES,
-      author="Eric Lo",
+      author="Eric Lo, modified by Jianqiang Liu",
       author_email="lxneng@gmail.com",
-      url="https://github.com/lxneng/xpinyin",
+      url="https://github.com/tangsty/xpinyin",
       packages=find_packages('src'),
       test_suite='xpinyin.tests',
       package_dir={'': 'src'},
