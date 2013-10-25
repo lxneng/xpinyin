@@ -27,5 +27,6 @@ class PinyinTests(unittest.TestCase):
     def test_get_initials(self):
         self.assertEqual(self.p.get_initials(u'你好'), u'N-H')
 
-    def test_get_initialsMinus(self):
+    def test_get_initials_with_splitter(self):
+        self.assertEqual(self.p.get_initials(u'你好', u' '), u'N H')
         self.assertEqual(self.p.get_initials(u'你好', u''), u'NH')
