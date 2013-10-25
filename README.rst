@@ -28,10 +28,10 @@ Usage
     In [2]: p = Pinyin()
 
     In [3]: p.get_pinyin(u"上海")
-    Out[3]: 'shanghai'
+    Out[3]: 'shang-hai'
 
-    In [4]: p.get_pinyin(u"上海", '-')
-    Out[4]: 'shang-hai'
+    In [4]: p.get_pinyin(u"上海", '')
+    Out[4]: 'shanghai'
 
     In [5]: p.get_pinyin(u"上海", ' ')
     Out[5]: 'shang hai'
