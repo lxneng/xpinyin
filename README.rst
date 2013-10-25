@@ -2,7 +2,7 @@ xpinyin
 ==========
 
 .. image:: https://travis-ci.org/lxneng/xpinyin.png?branch=master
-   :target: https://travis-ci.org/tangsty/xpinyin
+   :target: https://travis-ci.org/lxneng/xpinyin
 
 .. image:: https://pypip.in/d/xpinyin/badge.png
         :target: https://crate.io/packages/xpinyin/
@@ -16,7 +16,7 @@ Install
 ::
 
     pip install xpinyin
-    not supported yet!
+
 
 Usage
 -----
