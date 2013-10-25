@@ -5,6 +5,9 @@ Changelog
 0.4.8 - Jun. 16, 2013
 ----------------------
 
+- change README and get_initials; add get_initial
+  [tangsty]
+
 - add download status image to README.rst
   [lxneng]
 

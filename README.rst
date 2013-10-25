@@ -36,8 +36,17 @@ Usage
     In [5]: p.get_pinyin(u"上海", ' ')
     Out[5]: 'shang hai'
 
-    In [6]: p.get_initials(u"上")
+    In [6]: p.get_initial(u"上")
     Out[6]: 'S'
+
+    In [6]: p.get_initials(u"上海")
+    Out[6]: 'S-H'
+
+    In [6]: p.get_initials(u"上海", u'')
+    Out[6]: 'SH'
+
+    In [6]: p.get_initials(u"上海", u' ')
+    Out[6]: 'S H'
 
 请输入utf8编码汉字
 

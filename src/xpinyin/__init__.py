@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+
+from __future__ import unicode_literals
+
 import os.path
 
 
@@ -34,8 +37,8 @@ class Pinyin(object):
         for char in chars:
             key = "%X" % ord(char)
             try:
-                result.append(self.dict[key].split(" ")[0].strip()[:-1]
-                              .lower())
+                result.append(
+                    self.dict[key].split(" ")[0].strip()[:-1].lower())
                 flag = 1
             except KeyError:
                 if flag:
@@ -46,8 +49,23 @@ class Pinyin(object):
 
         return splitter.join(result)
 
-    def get_initials(self, char=u'你'):
+    def get_initial(self, char=u'你'):
         try:
             return self.dict["%X" % ord(char)].split(" ")[0][0]
         except KeyError:
             return char
+
+    def get_initials(self, chars=u'你好', splitter=u'-'):
+        result = []
+        flag = 1
+        for char in chars:
+            try:
+                result.append(self.dict["%X" % ord(char)].split(" ")[0][0])
+                flag = 1
+            except KeyError:
+                if flag:
+                    result.append(char)
+                else:
+                    result[-1] += char
+
+        return splitter.join(result)
