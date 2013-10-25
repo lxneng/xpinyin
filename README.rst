@@ -39,14 +39,14 @@ Usage
     In [6]: p.get_initial(u"上")
     Out[6]: 'S'
 
-    In [6]: p.get_initials(u"上海")
-    Out[6]: 'S-H'
+    In [7]: p.get_initials(u"上海")
+    Out[7]: 'S-H'
 
-    In [6]: p.get_initials(u"上海", u'')
-    Out[6]: 'SH'
+    In [8]: p.get_initials(u"上海", u'')
+    Out[8]: 'SH'
 
-    In [6]: p.get_initials(u"上海", u' ')
-    Out[6]: 'S H'
+    In [9]: p.get_initials(u"上海", u' ')
+    Out[9]: 'S H'
 
 请输入utf8编码汉字
 

@@ -2,6 +2,13 @@ Changelog
 =========
 
 
+0.4.9 - Oct. 25, 2013
+----------------------
+
+- change README and get_initials; add get_initial
+  [tangsty]
+
+
 0.4.8 - Jun. 16, 2013
 ----------------------
 
