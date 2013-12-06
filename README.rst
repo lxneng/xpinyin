@@ -1,6 +1,9 @@
 xpinyin
 ==========
 
+.. image:: https://badge.fury.io/py/xpinyin.png
+    :target: http://badge.fury.io/py/xpinyin
+
 .. image:: https://travis-ci.org/lxneng/xpinyin.png?branch=master
    :target: https://travis-ci.org/lxneng/xpinyin
 
