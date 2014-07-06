@@ -21,6 +21,9 @@ class PinyinTests(unittest.TestCase):
         self.assertEqual(self.p.get_pinyin(u'Apple发布iOS7', splitter=u'-'),
                          u'Apple-fa-bu-iOS7')
 
+    def test_get_pinyin_with_tone_marks(self):
+        self.assertEqual(self.p.get_pinyin(u'上海', show_tone_marks=True), u'sh\xe0ng-h\u01cei')
+
     def test_get_initial(self):
         self.assertEqual(self.p.get_initial(u'你'), u'N')
 

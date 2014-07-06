@@ -26,30 +26,28 @@ Usage
 
 ::
 
-    In [1]: from xpinyin import Pinyin
-
-    In [2]: p = Pinyin()
-
-    In [3]: p.get_pinyin(u"上海")
-    Out[3]: 'shang-hai'
-
-    In [4]: p.get_pinyin(u"上海", '')
-    Out[4]: 'shanghai'
-
-    In [5]: p.get_pinyin(u"上海", ' ')
-    Out[5]: 'shang hai'
-
-    In [6]: p.get_initial(u"上")
-    Out[6]: 'S'
-
-    In [7]: p.get_initials(u"上海")
-    Out[7]: 'S-H'
-
-    In [8]: p.get_initials(u"上海", u'')
-    Out[8]: 'SH'
-
-    In [9]: p.get_initials(u"上海", u' ')
-    Out[9]: 'S H'
+    >>> from xpinyin import Pinyin
+    >>> p = Pinyin()
+    >>> # default splitter is `-`
+    >>> p.get_pinyin(u"上海")
+    'shang-hai'
+    >>> # show tone marks
+    >>> p.get_pinyin(u"上海", show_tone_marks=True)
+    'shàng-hǎi'
+    >>> # remove splitter
+    >>> p.get_pinyin(u"上海", '')
+    'shanghai'
+    >>> # set splitter as whitespace
+    >>> p.get_pinyin(u"上海", ' ')
+    'shang hai'
+    >>> p.get_initial(u"上")
+    'S'
+    >>> p.get_initials(u"上海")
+    'S-H'
+    >>> p.get_initials(u"上海", u'')
+    'SH'
+    >>> p.get_initials(u"上海", u' ')
+    'S H'
 
 请输入utf8编码汉字
 

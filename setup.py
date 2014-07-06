@@ -8,7 +8,7 @@ README = open(os.path.join(here, 'README.rst')).read()
 CHANGES = open(os.path.join(here, 'CHANGES.rst')).read()
 
 setup(name="xpinyin",
-      version='0.5.0',
+      version='0.5.1',
       description="translate chinese hanzi to pinyin by python",
       long_description=README + '\n\n' + CHANGES,
       author="Eric Lo",
