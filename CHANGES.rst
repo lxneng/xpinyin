@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+0.5.3 - Dec. 25, 2014
+----------------------
+
+- adjust default pinyin for character '什' and '么', 什么 => 'shén-me'
+
+
 0.5.2 - Jul. 6, 2014
 ----------------------
 
