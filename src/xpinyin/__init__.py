@@ -101,6 +101,11 @@ class Pinyin(object):
         return r
 
     def get_pinyin(self, chars=u'你好', splitter=u'-', show_tone_marks=False):
+        
+        if type(chars).__name__ != "unicode":
+            print("Error. Input chars must be unicode")
+            return ''
+
         result = []
         flag = 1
         for char in chars:
