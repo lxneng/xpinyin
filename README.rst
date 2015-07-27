@@ -1,14 +1,14 @@
 xpinyin
 ==========
 
-.. image:: https://badge.fury.io/py/xpinyin.png
-    :target: http://badge.fury.io/py/xpinyin
+.. image:: https://img.shields.io/travis/lxneng/xpinyin.svg
+    :target: https://travis-ci.org/lxneng/xpinyin
 
-.. image:: https://travis-ci.org/lxneng/xpinyin.png?branch=master
-   :target: https://travis-ci.org/lxneng/xpinyin
+.. image:: https://img.shields.io/pypi/v/xpinyin.svg
+    :target: https://pypi.python.org/pypi/xpinyin/
 
-.. image:: https://pypip.in/d/xpinyin/badge.png
-        :target: https://crate.io/packages/xpinyin/
+.. image:: https://img.shields.io/pypi/dm/xpinyin.svg
+    :target: https://pypi.python.org/pypi/xpinyin/
 
 translate chinese hanzi to pinyin by python, inspired by flyerhzm’s
 `chinese\_pinyin`_ gem
