@@ -59,42 +59,39 @@ class Pinyin(object):
             k, v = line.split('\t')
             self.dict[k] = v
 
-    def decode_pinyin(self, s):
+    @staticmethod
+    def decode_pinyin(s):
         s = s.lower()
         r = ""
         t = ""
         for c in s:
-            if c >= 'a' and c <= 'z':
+            if "a" <= c <= 'z':
                 t += c
             elif c == ':':
                 assert t[-1] == 'u'
                 t = t[:-1] + "\u00fc"
             else:
-                if c >= '0' and c <= '5':
+                if '0' <= c <= '5':
                     tone = int(c) % 5
                     if tone != 0:
                         m = re.search("[aoeiuv\u00fc]+", t)
                         if m is None:
+                            # pass when no vowels find yet
                             t += c
                         elif len(m.group(0)) == 1:
-
-                            t = t[:m.start(0)]\
-                                + PinyinToneMark[tone][
-                                    PinyinToneMark[0].index(m.group(0))]\
+                            # if just find one vowels, put the mark on it
+                            t = t[:m.start(0)] \
+                                + PinyinToneMark[tone][PinyinToneMark[0].index(m.group(0))] \
                                 + t[m.end(0):]
                         else:
-                            if 'a' in t:
-                                t = t.replace("a", PinyinToneMark[tone][0])
-                            elif 'o' in t:
-                                t = t.replace("o", PinyinToneMark[tone][1])
-                            elif 'e' in t:
-                                t = t.replace("e", PinyinToneMark[tone][2])
-                            elif t.endswith("ui"):
-                                t = t.replace("i", PinyinToneMark[tone][3])
-                            elif t.endswith("iu"):
-                                t = t.replace("u", PinyinToneMark[tone][4])
-                            else:
-                                t += "!"
+                            # mark on vowels which search with "a, o, e" one by one
+                            # when "i" and "u" stand together, make the vowels behind
+                            for num, vowels in enumerate(("a", "o", "e", "ui", "iu")):
+                                if vowels in t:
+                                    t = t.replace(vowels[-1], PinyinToneMark[tone][num])
+                                    break
+                                else:
+                                    t += "!"
                 r += t
                 t = ""
         r += t
