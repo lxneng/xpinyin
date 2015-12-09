@@ -51,7 +51,7 @@ Usage
     
     如果方法中传入变量，那么直接加前缀是不可以了。而是要将变量转为utf-8编码：
     >>> wordvalue = '中国'
-    >>> wordvalue= unicode(wordvalue,'utf-8')u
+    >>> wordvalue= unicode(wordvalue,'utf-8')
     >>> s = p.get_initials(wordvalue, u'').lower()
     'zg'
     
