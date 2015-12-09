@@ -48,7 +48,16 @@ Usage
     'SH'
     >>> p.get_initials(u"上海", u' ')
     'S H'
+    
+    如果方法中传入变量，那么直接加前缀是不可以了。而是要将变量转为utf-8编码：
+    >>> wordvalue = '中国'
+    >>> wordvalue= unicode(wordvalue,'utf-8')u
+    >>> s = p.get_initials(wordvalue, u'').lower()
+    'zg'
+    
 
 请输入utf8编码汉字
+
+
 
 .. _chinese\_pinyin: https://github.com/flyerhzm/chinese_pinyin
