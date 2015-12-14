@@ -2,6 +2,15 @@ Changelog
 =========
 
 
+0.5.4 - Dec. 14, 2015
+----------------------
+
+- replace open() calls with io.open() for Python 3 compatibility,
+  fix `UnicodeDecodeError`
+- change \u730E 猎 to LIE4
+- improve readme
+
+
 0.5.3 - Dec. 25, 2014
 ----------------------
 
