@@ -96,25 +96,29 @@ class Pinyin(object):
                 t = ""
         r += t
         return r
+    
+    @staticmethod
+    def convert_pinyin(word, convert):
+        if convert == 'capitalize':
+            return word.capitalize()
+        if convert == 'lower':
+            return word.lower()
+        if convert == 'upper':
+            return word.upper()
 
-    def get_pinyin(self, chars=u'你好', splitter=u'-', show_tone_marks=False):
+    def get_pinyin(self, chars=u'你好', splitter=u'-', show_tone_marks=False, convert='lower'):
         result = []
-        flag = 1
         for char in chars:
             key = "%X" % ord(char)
             try:
-                result.append(self.decode_pinyin(
-                    self.dict[key].split()[0].strip().lower())
-                    if show_tone_marks
-                    else self.dict[key].split()[0].strip()[:-1].lower())
-                flag = 1
-            except KeyError:
-                if flag:
-                    result.append(char)
+                if show_tone_marks:
+                    word = self.decode_pinyin(self.dict[key].split()[0].strip())
                 else:
-                    result[-1] += char
-                flag = 0
-
+                    word = self.dict[key].split()[0].strip()[:-1]
+                word = self.convert_pinyin(word, convert)
+                result.append(word)
+            except KeyError:
+                result.append(char)
         return splitter.join(result)
 
     def get_initial(self, char=u'你'):
