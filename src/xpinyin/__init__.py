@@ -55,9 +55,10 @@ class Pinyin(object):
 
     def __init__(self, data_path=data_path):
         self.dict = {}
-        for line in open(data_path):
-            k, v = line.split('\t')
-            self.dict[k] = v
+        with open(data_path) as f:
+            for line in f:
+                k, v = line.split('\t')
+                self.dict[k] = v
 
     @staticmethod
     def decode_pinyin(s):
@@ -96,7 +97,7 @@ class Pinyin(object):
                 t = ""
         r += t
         return r
-    
+
     @staticmethod
     def convert_pinyin(word, convert):
         if convert == 'capitalize':
@@ -106,8 +107,10 @@ class Pinyin(object):
         if convert == 'upper':
             return word.upper()
 
-    def get_pinyin(self, chars=u'你好', splitter=u'-', show_tone_marks=False, convert='lower'):
+    def get_pinyin(self, chars=u'你好', splitter=u'-',
+                   show_tone_marks=False, convert='lower'):
         result = []
+        flag = 1
         for char in chars:
             key = "%X" % ord(char)
             try:
@@ -117,8 +120,13 @@ class Pinyin(object):
                     word = self.dict[key].split()[0].strip()[:-1]
                 word = self.convert_pinyin(word, convert)
                 result.append(word)
+                flag = 1
             except KeyError:
-                result.append(char)
+                if flag:
+                    result.append(char)
+                else:
+                    result[-1] += char
+                flag = 0
         return splitter.join(result)
 
     def get_initial(self, char=u'你'):
