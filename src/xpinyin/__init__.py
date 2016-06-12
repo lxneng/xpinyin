@@ -91,8 +91,6 @@ class Pinyin(object):
                                 if vowels in t:
                                     t = t.replace(vowels[-1], PinyinToneMark[tone][num])
                                     break
-                                else:
-                                    t += "!"
                 r += t
                 t = ""
         r += t

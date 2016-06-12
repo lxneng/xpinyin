@@ -1,6 +1,6 @@
+#! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 import unittest
-
 
 class PinyinTests(unittest.TestCase):
     def Pinyin(self, *a, **kw):
@@ -24,6 +24,9 @@ class PinyinTests(unittest.TestCase):
     def test_get_pinyin_with_tone_marks(self):
         self.assertEqual(self.p.get_pinyin(u'上海', show_tone_marks=True), u'sh\xe0ng-h\u01cei')
 
+    def test_get_pinyin_with_tone_marks(self):
+        self.assertEqual(self.p.get_pinyin(u'秋', show_tone_marks=True), u'qiū')
+
     def test_get_initial(self):
         self.assertEqual(self.p.get_initial(u'你'), u'N')
 
@@ -33,3 +36,6 @@ class PinyinTests(unittest.TestCase):
     def test_get_initials_with_splitter(self):
         self.assertEqual(self.p.get_initials(u'你好', u' '), u'N H')
         self.assertEqual(self.p.get_initials(u'你好', u''), u'NH')
+
+if __name__ == '__main__':
+    unittest.main()
