@@ -2,6 +2,15 @@ Changelog
 =========
 
 
+0.5.5 - Feb. 28, 2016
+----------------------
+- add a new staticmethod which can convert pinyin to upper, lower or capitalize.
+  https://github.com/lxneng/xpinyin/pull/28
+
+- Removed extraneous "!" being appended to non 'a' vowel replacements when show_tone_marks=True; also added simple unitest.main() for non-nose users
+  https://github.com/lxneng/xpinyin/pull/30
+
+
 0.5.4 - Dec. 14, 2015
 ----------------------
 
