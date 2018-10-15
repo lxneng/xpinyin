@@ -22,10 +22,10 @@ class PinyinTests(unittest.TestCase):
                          u'Apple-fa-bu-iOS7')
 
     def test_get_pinyin_with_tone_marks(self):
-        self.assertEqual(self.p.get_pinyin(u'上海', show_tone_marks=True), u'sh\xe0ng-h\u01cei')
+        self.assertEqual(self.p.get_pinyin(u'上海', tone_marks='marks'), u'sh\xe0ng-h\u01cei')
 
     def test_get_pinyin_with_tone_marks(self):
-        self.assertEqual(self.p.get_pinyin(u'秋', show_tone_marks=True), u'qiū')
+        self.assertEqual(self.p.get_pinyin(u'秋', tone_marks='marks'), u'qiū')
 
     def test_get_initial(self):
         self.assertEqual(self.p.get_initial(u'你'), u'N')

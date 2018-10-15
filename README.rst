@@ -32,8 +32,10 @@ Usage
     >>> p.get_pinyin(u"上海")
     'shang-hai'
     >>> # show tone marks
-    >>> p.get_pinyin(u"上海", show_tone_marks=True)
+    >>> p.get_pinyin(u"上海", tone_marks='marks')
     'shàng-hǎi'
+    >>> p.get_pinyin(u"上海", tone_marks='numbers')
+    >>> 'shang4-hai3'
     >>> # remove splitter
     >>> p.get_pinyin(u"上海", '')
     'shanghai'

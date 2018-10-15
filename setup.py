@@ -9,7 +9,7 @@ README = io.open(os.path.join(here, 'README.rst'), encoding='UTF-8').read()
 CHANGES = io.open(os.path.join(here, 'CHANGES.rst'), encoding='UTF-8').read()
 
 setup(name="xpinyin",
-      version='0.5.5',
+      version='0.5.6',
       description="translate chinese hanzi to pinyin by python",
       long_description=README + '\n\n' + CHANGES,
       classifiers=[

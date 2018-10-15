@@ -2,6 +2,13 @@ Changelog
 =========
 
 
+0.5.6 - Oct. 15, 2018
+----------------------
+- add tones as numbers support.
+  https://github.com/lxneng/xpinyin/pull/42
+- fix tests
+
+
 0.5.5 - Feb. 28, 2016
 ----------------------
 - add a new staticmethod which can convert pinyin to upper, lower or capitalize.
