@@ -106,14 +106,16 @@ class Pinyin(object):
             return word.upper()
 
     def get_pinyin(self, chars=u'你好', splitter=u'-',
-                   show_tone_marks=False, convert='lower'):
+                   tone_marks=None, convert='lower'):
         result = []
         flag = 1
         for char in chars:
             key = "%X" % ord(char)
             try:
-                if show_tone_marks:
+                if tone_marks == 'marks':
                     word = self.decode_pinyin(self.dict[key].split()[0].strip())
+                elif tone_marks == 'numbers':
+                    word = self.dict[key].split()[0].strip()
                 else:
                     word = self.dict[key].split()[0].strip()[:-1]
                 word = self.convert_pinyin(word, convert)
