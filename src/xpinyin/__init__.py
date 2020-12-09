@@ -110,7 +110,7 @@ class Pinyin(object):
             return word.upper()
 
     def get_pinyins(self, chars: str, splitter: str = u'-',
-                    tone_marks: Optional[str] = None, convert: str = 'lower', comb: bool = True) -> List[str]:
+                    tone_marks: Optional[str] = None, convert: str = 'lower', n=None) -> List[str]:
         all_pinyins = []  # a list of lists of pinyin options for each char
         flag = 1  # in the list (probably not aChinese character)
         for char in chars:
@@ -122,48 +122,28 @@ class Pinyin(object):
                     all_pinyins[-1][-1] += char  # add to previous sequence of non Chinese chars
                 flag = 0
             else:
-                flag = 1
-                char_py_versions = self.dict[key].split()
-                last = 1 if comb is False else len(char_py_versions)
+                if tone_marks is None:  # in this case we may have duplicates if the variations differ just by the tones
+                    char_py_versions = []
+                    for v in self.dict[key].split():
+                        if v[0:-1] not in char_py_versions:  # we remove the tone mark while we're at it
+                            char_py_versions.append(v[0:-1])
+                else:
+                    char_py_versions = self.dict[key].split()
+                last = 1 if n == 1 else len(char_py_versions)
                 if tone_marks == 'marks':
                     char_options = [Pinyin.decode_pinyin(o) for o in char_py_versions[0:last]]
-                elif tone_marks == 'numbers':
+                else:  # 'numbers' or None
                     char_options = [o for o in char_py_versions[0:last]]
-                else:
-                    char_options = [o[:-1] for o in char_py_versions[0:last]]
-                all_pinyins.append([Pinyin.convert_pinyin(c, convert) for c in char_options])
 
-        return list(set(get_combs(all_pinyins, splitter)))  # note: ignoring order
+                all_pinyins.append([Pinyin.convert_pinyin(c, convert) for c in char_options])
+                flag = 1
+
+        return get_combs(all_pinyins, splitter, n=n)
 
     def get_pinyin(self, chars: str, splitter: str = u'-',
                    tone_marks=None, convert: str = 'lower') -> str:
 
-        return self.get_pinyins(chars, splitter=splitter, tone_marks=tone_marks, convert=convert, comb=False)[0]
-
-    def get_pinyin_old(self, chars=u'你好', splitter=u'-',
-                       tone_marks=None, convert='lower'):
-        result = []
-        flag = 1
-
-        for char in chars:
-            key = "%X" % ord(char)
-            try:
-                if tone_marks == 'marks':
-                    word = self.decode_pinyin(self.dict[key].split()[0])  # TODO comb
-                elif tone_marks == 'numbers':
-                    word = self.dict[key].split()[0]  # TODO comb
-                else:
-                    word = self.dict[key].split()[0][:-1]  # TODO comb
-                word = self.convert_pinyin(word, convert)
-                result.append(word)
-                flag = 1
-            except KeyError:
-                if flag:
-                    result.append(char)  # TODO this is adding the original
-                else:
-                    result[-1] += char  # TODO replacing the last char with the original if already was in error state
-                flag = 0
-        return splitter.join(result)
+        return self.get_pinyins(chars, splitter=splitter, tone_marks=tone_marks, convert=convert, n=1)[0]
 
     def get_initial(self, char=u'你'):
         try:

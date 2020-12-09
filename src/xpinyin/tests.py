@@ -41,6 +41,23 @@ class PinyinTests(unittest.TestCase):
     def test_get_pinyins_with_default_splitter(self):
         self.assertEqual(self.p.get_pinyins(u'上海'), [u'shang-hai'])
 
+    def test_get_pinyins_single_char(self):
+        self.assertEqual(self.p.get_pinyins(u'乐', splitter='', tone_marks='marks'),
+                         ['lè', 'yuè', 'yào', 'luò', 'liáo'])  # 4E50	LE4 YUE4 YAO4 LUO4 LIAO2
+
+    def test_get_pinyins_two_chars(self):
+        combs1 = self.p.get_pinyins(u'音', splitter='', tone_marks='marks')
+        combs2 = self.p.get_pinyins(u'乐', splitter='', tone_marks='marks')
+        combs12 = self.p.get_pinyins(u'音乐', splitter='', tone_marks='marks')
+        self.assertEqual(len(combs12), len(combs1) * len(combs2))
+        self.assertIn('yīnyuè', combs12)
+
+    def test_get_pinyins_no_tones_uniq(self):
+        self.assertEqual(['ma'], self.p.get_pinyins(u'吗', splitter='', tone_marks=None))
+
+    def test_get_pinyins_max_number(self):
+        self.assertEqual(5, len(self.p.get_pinyins(u'音乐', splitter='', n=5)))
+
 
 if __name__ == '__main__':
     unittest.main()

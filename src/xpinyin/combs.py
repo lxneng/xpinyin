@@ -35,10 +35,10 @@ def _get_comb_indexes(lengths: List[int], n=None) -> List[List[int]]:
     return combs
 
 
-def get_combs(options: List[List[str]], splitter='', n=10) -> List[str]:
+def get_combs(options: List[List[str]], splitter='', n=None) -> List[str]:
     """
+    Given a list of options, returns up to n combinations
     e.g.: [['a'], ['1' ,'2'], ['@']] -> [a1@, a2@]
-    Note: the order is not guaranteed
     """
     combs = []
     comb_numbers = [len(o) for o in options]
