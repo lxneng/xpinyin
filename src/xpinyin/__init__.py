@@ -19,7 +19,7 @@ PinyinToneMark = {
 
 class Pinyin(object):
     """translate chinese hanzi to pinyin by python, inspired by flyerhzm’s
-    `chinese\_pinyin`_ gem
+    `chinese_pinyin`_ gem
 
     usage
     -----
@@ -51,7 +51,7 @@ class Pinyin(object):
         'S H'
 
     请输入utf8编码汉字
-    .. _chinese\_pinyin: https://github.com/flyerhzm/chinese_pinyin
+    .. _chinese_pinyin: https://github.com/flyerhzm/chinese_pinyin
     """
 
     data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
@@ -110,35 +110,39 @@ class Pinyin(object):
             return word.upper()
 
     def get_pinyins(self, chars: str, splitter: str = u'-',
-                    tone_marks: Optional[str] = None, convert: str = 'lower', n=None) -> List[str]:
-        all_pinyins = []  # a list of lists of pinyin options for each char
-        flag = 1  # in the list (probably not aChinese character)
+                    tone_marks: Optional[str] = None, convert: str = 'lower', n: int = 10) -> List[str]:
+        """
+        Get All pinyin combinations given all possible readings of each character.
+        The number of combinations is limited par default to 10 to avoid exponential explosion on long texts.
+        """
+        all_pinyin_options = []  # a list of lists that we'll fill with all pinyin options for each character
+        flag = 1  # in the list (otherwise, probably not a Chinese character)
         for char in chars:
             key = "%X" % ord(char)
             if key not in self.dict:
                 if flag == 1:
-                    all_pinyins.append([char])  # add as is
+                    all_pinyin_options.append([char])  # add as is
                 else:
-                    all_pinyins[-1][-1] += char  # add to previous sequence of non Chinese chars
-                flag = 0
+                    all_pinyin_options[-1][-1] += char  # add to previous sequence of non Chinese chars
+                flag = 0  # within a sequence of non Chinese characters
             else:
                 if tone_marks is None:  # in this case we may have duplicates if the variations differ just by the tones
-                    char_py_versions = []
+                    char_py_options = []
                     for v in self.dict[key].split():
-                        if v[0:-1] not in char_py_versions:  # we remove the tone mark while we're at it
-                            char_py_versions.append(v[0:-1])
+                        if v[0:-1] not in char_py_options:  # we remove the tone mark while we're at it
+                            char_py_options.append(v[0:-1])
                 else:
-                    char_py_versions = self.dict[key].split()
-                last = 1 if n == 1 else len(char_py_versions)
+                    char_py_options = self.dict[key].split()
+                last = 1 if n == 1 else len(char_py_options)
                 if tone_marks == 'marks':
-                    char_options = [Pinyin.decode_pinyin(o) for o in char_py_versions[0:last]]
+                    char_options = [Pinyin.decode_pinyin(o) for o in char_py_options[0:last]]
                 else:  # 'numbers' or None
-                    char_options = [o for o in char_py_versions[0:last]]
+                    char_options = [o for o in char_py_options[0:last]]
 
-                all_pinyins.append([Pinyin.convert_pinyin(c, convert) for c in char_options])
+                all_pinyin_options.append([Pinyin.convert_pinyin(c, convert) for c in char_options])
                 flag = 1
 
-        return get_combs(all_pinyins, splitter, n=n)
+        return get_combs(options=all_pinyin_options, splitter=splitter, n=n)
 
     def get_pinyin(self, chars: str, splitter: str = u'-',
                    tone_marks=None, convert: str = 'lower') -> str:
