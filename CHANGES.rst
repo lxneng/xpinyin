@@ -1,7 +1,13 @@
 Changelog
 =========
 
-0.5.7 - JUN. 28, 2020
+0.6.0 - Dec. 11, 2020
+----------------------
+
+- Add pinyin combinations.
+  https://github.com/lxneng/xpinyin/pull/46
+
+0.5.7 - Jun. 28, 2020
 ----------------------
 
 - fixes #36, #37

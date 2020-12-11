@@ -51,15 +51,11 @@ Usage
     >>> p.get_initials(u"上海", u' ')
     'S H'
     >>> # get combinations of the multiple readings of the characters
-    >>> p.get_pinyins(u'好吗？', splitter=u'', tone_marks='marks')
-    ['hǎoma？', 'hǎomá？', 'hǎomǎ？', 'hàoma？', 'hàomá？', 'hàomǎ？']
+    >>> p.get_pinyins(u'模型', splitter=u' ', tone_marks='marks')
+    ['mó xíng', 'mú xíng']
+    >>> p.get_pinyins(u'模样', splitter=u' ', tone_marks='marks')
+    ['mó yáng', 'mó yàng', 'mó xiàng', 'mú yáng', 'mú yàng', 'mú xiàng']
 
-
-    如果方法中传入变量，那么直接加前缀是不可以了。而是要将变量转为utf-8编码：
-    >>> wordvalue = '中国'
-    >>> wordvalue= unicode(wordvalue,'utf-8')
-    >>> s = p.get_initials(wordvalue, u'').lower()
-    'zg'
 
 
 请输入utf8编码汉字
