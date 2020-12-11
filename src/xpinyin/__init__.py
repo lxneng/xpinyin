@@ -4,6 +4,9 @@ from __future__ import unicode_literals
 
 import os.path
 import re
+from typing import List, Optional
+
+from xpinyin.combs import get_combs
 
 PinyinToneMark = {
     0: u"aoeiuv\u00fc",
@@ -15,9 +18,8 @@ PinyinToneMark = {
 
 
 class Pinyin(object):
-
     """translate chinese hanzi to pinyin by python, inspired by flyerhzm’s
-    `chinese\_pinyin`_ gem
+    `chinese_pinyin`_ gem
 
     usage
     -----
@@ -49,7 +51,7 @@ class Pinyin(object):
         'S H'
 
     请输入utf8编码汉字
-    .. _chinese\_pinyin: https://github.com/flyerhzm/chinese_pinyin
+    .. _chinese_pinyin: https://github.com/flyerhzm/chinese_pinyin
     """
 
     data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
@@ -60,7 +62,7 @@ class Pinyin(object):
         with open(data_path) as f:
             for line in f:
                 k, v = line.split('\t')
-                self.dict[k] = v
+                self.dict[k] = v.rstrip()
 
     @staticmethod
     def decode_pinyin(s):
@@ -107,29 +109,45 @@ class Pinyin(object):
         if convert == 'upper':
             return word.upper()
 
-    def get_pinyin(self, chars=u'你好', splitter=u'-',
-                   tone_marks=None, convert='lower'):
-        result = []
-        flag = 1
+    def get_pinyins(self, chars: str, splitter: str = u'-',
+                    tone_marks: Optional[str] = None, convert: str = 'lower', n: int = 10) -> List[str]:
+        """
+        Get All pinyin combinations given all possible readings of each character.
+        The number of combinations is limited par default to 10 to avoid exponential explosion on long texts.
+        """
+        all_pinyin_options = []  # a list of lists that we'll fill with all pinyin options for each character
+        flag = 1  # in the list (otherwise, probably not a Chinese character)
         for char in chars:
             key = "%X" % ord(char)
-            try:
+            if key not in self.dict:
+                if flag == 1:
+                    all_pinyin_options.append([char])  # add as is
+                else:
+                    all_pinyin_options[-1][-1] += char  # add to previous sequence of non Chinese chars
+                flag = 0  # within a sequence of non Chinese characters
+            else:
+                if tone_marks is None:  # in this case we may have duplicates if the variations differ just by the tones
+                    char_py_options = []
+                    for v in self.dict[key].split():
+                        if v[0:-1] not in char_py_options:  # we remove the tone mark while we're at it
+                            char_py_options.append(v[0:-1])
+                else:
+                    char_py_options = self.dict[key].split()
+                last = 1 if n == 1 else len(char_py_options)
                 if tone_marks == 'marks':
-                    word = self.decode_pinyin(self.dict[key].split()[0].strip())
-                elif tone_marks == 'numbers':
-                    word = self.dict[key].split()[0].strip()
-                else:
-                    word = self.dict[key].split()[0].strip()[:-1]
-                word = self.convert_pinyin(word, convert)
-                result.append(word)
+                    char_options = [Pinyin.decode_pinyin(o) for o in char_py_options[0:last]]
+                else:  # 'numbers' or None
+                    char_options = [o for o in char_py_options[0:last]]
+
+                all_pinyin_options.append([Pinyin.convert_pinyin(c, convert) for c in char_options])
                 flag = 1
-            except KeyError:
-                if flag:
-                    result.append(char)
-                else:
-                    result[-1] += char
-                flag = 0
-        return splitter.join(result)
+
+        return get_combs(options=all_pinyin_options, splitter=splitter, n=n)
+
+    def get_pinyin(self, chars: str, splitter: str = u'-',
+                   tone_marks=None, convert: str = 'lower') -> str:
+
+        return self.get_pinyins(chars, splitter=splitter, tone_marks=tone_marks, convert=convert, n=1)[0]
 
     def get_initial(self, char=u'你'):
         try:
