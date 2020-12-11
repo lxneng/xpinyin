@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-
-from __future__ import unicode_literals
-
 import os.path
 import re
 from typing import List, Optional
@@ -9,15 +5,15 @@ from typing import List, Optional
 from xpinyin.combs import get_combs
 
 PinyinToneMark = {
-    0: u"aoeiuv\u00fc",
-    1: u"\u0101\u014d\u0113\u012b\u016b\u01d6\u01d6",
-    2: u"\u00e1\u00f3\u00e9\u00ed\u00fa\u01d8\u01d8",
-    3: u"\u01ce\u01d2\u011b\u01d0\u01d4\u01da\u01da",
-    4: u"\u00e0\u00f2\u00e8\u00ec\u00f9\u01dc\u01dc",
+    0: "aoeiuv\u00fc",
+    1: "\u0101\u014d\u0113\u012b\u016b\u01d6\u01d6",
+    2: "\u00e1\u00f3\u00e9\u00ed\u00fa\u01d8\u01d8",
+    3: "\u01ce\u01d2\u011b\u01d0\u01d4\u01da\u01da",
+    4: "\u00e0\u00f2\u00e8\u00ec\u00f9\u01dc\u01dc",
 }
 
 
-class Pinyin(object):
+class Pinyin:
     """translate chinese hanzi to pinyin by python, inspired by flyerhzm’s
     `chinese_pinyin`_ gem
 
@@ -109,7 +105,7 @@ class Pinyin(object):
         if convert == 'upper':
             return word.upper()
 
-    def get_pinyins(self, chars: str, splitter: str = u'-',
+    def get_pinyins(self, chars: str, splitter: str = '-',
                     tone_marks: Optional[str] = None, convert: str = 'lower', n: int = 10) -> List[str]:
         """
         Get All pinyin combinations given all possible readings of each character.
@@ -144,18 +140,18 @@ class Pinyin(object):
 
         return get_combs(options=all_pinyin_options, splitter=splitter, n=n)
 
-    def get_pinyin(self, chars: str, splitter: str = u'-',
+    def get_pinyin(self, chars: str, splitter: str = '-',
                    tone_marks=None, convert: str = 'lower') -> str:
 
         return self.get_pinyins(chars, splitter=splitter, tone_marks=tone_marks, convert=convert, n=1)[0]
 
-    def get_initial(self, char=u'你'):
+    def get_initial(self, char='你'):
         try:
             return self.dict["%X" % ord(char)].split(" ")[0][0]
         except KeyError:
             return char
 
-    def get_initials(self, chars=u'你好', splitter=u'-'):
+    def get_initials(self, chars='你好', splitter='-'):
         result = []
         flag = 1
         for char in chars:

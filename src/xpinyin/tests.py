@@ -1,5 +1,4 @@
 #! /usr/bin/env python3
-# -*- coding: utf-8 -*-
 import unittest
 
 from xpinyin.combs import _get_comb_indexes, get_combs
@@ -16,28 +15,28 @@ class PinyinTests(unittest.TestCase):
         self.p = self.Pinyin()
 
     def test_get_pinyin_with_default_splitter(self):
-        self.assertEqual(self.p.get_pinyin(u'上海'), u'shang-hai')
+        self.assertEqual(self.p.get_pinyin('上海'), 'shang-hai')
 
     def test_get_pinyin_with_splitter(self):
-        self.assertEqual(self.p.get_pinyin(u'上海', splitter=u''), u'shanghai')
+        self.assertEqual(self.p.get_pinyin('上海', splitter=''), 'shanghai')
 
     def test_get_pinyin_mixed_words(self):
-        self.assertEqual(self.p.get_pinyin(u'Apple发布iOS7', splitter=u'-'),
-                         u'Apple-fa-bu-iOS7')
+        self.assertEqual(self.p.get_pinyin('Apple发布iOS7', splitter='-'),
+                         'Apple-fa-bu-iOS7')
 
     def test_get_pinyin_with_tone_marks(self):
-        self.assertEqual(self.p.get_pinyin(u'上海', tone_marks='marks'), u'sh\xe0ng-h\u01cei')
-        self.assertEqual(self.p.get_pinyin(u'秋', tone_marks='marks'), u'qiū')
+        self.assertEqual(self.p.get_pinyin('上海', tone_marks='marks'), 'sh\xe0ng-h\u01cei')
+        self.assertEqual(self.p.get_pinyin('秋', tone_marks='marks'), 'qiū')
 
     def test_get_initial(self):
-        self.assertEqual(self.p.get_initial(u'你'), u'N')
+        self.assertEqual(self.p.get_initial('你'), 'N')
 
     def test_get_initials(self):
-        self.assertEqual(self.p.get_initials(u'你好'), u'N-H')
+        self.assertEqual(self.p.get_initials('你好'), 'N-H')
 
     def test_get_initials_with_splitter(self):
-        self.assertEqual(self.p.get_initials(u'你好', u' '), u'N H')
-        self.assertEqual(self.p.get_initials(u'你好', u''), u'NH')
+        self.assertEqual(self.p.get_initials('你好', ' '), 'N H')
+        self.assertEqual(self.p.get_initials('你好', ''), 'NH')
 
     # --- testing combinations auxiliary functions ---
 
@@ -62,31 +61,31 @@ class PinyinTests(unittest.TestCase):
     # --- testing pinyin combinations ---
 
     def test_get_pinyins_with_default_splitter(self):
-        self.assertEqual(self.p.get_pinyins(u'上海'), [u'shang-hai'])
+        self.assertEqual(self.p.get_pinyins('上海'), ['shang-hai'])
 
     def test_get_pinyins_single_char(self):
         self.assertEqual(['lè', 'yuè', 'yào', 'luò', 'liáo'],  # 4E50	LE4 YUE4 YAO4 LUO4 LIAO2
-                         self.p.get_pinyins(u'乐', splitter='', tone_marks='marks'))
+                         self.p.get_pinyins('乐', splitter='', tone_marks='marks'))
 
     def test_get_pinyins_two_chars(self):
-        combs1 = self.p.get_pinyins(u'音', splitter='', tone_marks='marks')
-        combs2 = self.p.get_pinyins(u'乐', splitter='', tone_marks='marks')
-        combs12 = self.p.get_pinyins(u'音乐', splitter='', tone_marks='marks')
+        combs1 = self.p.get_pinyins('音', splitter='', tone_marks='marks')
+        combs2 = self.p.get_pinyins('乐', splitter='', tone_marks='marks')
+        combs12 = self.p.get_pinyins('音乐', splitter='', tone_marks='marks')
         self.assertEqual(len(combs12), len(combs1) * len(combs2))
         self.assertIn('yīnyuè', combs12)
 
     def test_get_pinyins_no_tones_uniq(self):
-        self.assertEqual(['ma'], self.p.get_pinyins(u'吗', splitter='', tone_marks=None))
+        self.assertEqual(['ma'], self.p.get_pinyins('吗', splitter='', tone_marks=None))
 
     def test_get_pinyins_max_num(self):
-        self.assertEqual(5, len(self.p.get_pinyins(u'音乐', splitter='', n=5)))
+        self.assertEqual(5, len(self.p.get_pinyins('音乐', splitter='', n=5)))
 
     def test_get_pinyins_mixed_words(self):
-        self.assertEqual(self.p.get_pinyins(u'ABC串123', splitter=u' ', tone_marks='marks'),
+        self.assertEqual(self.p.get_pinyins('ABC串123', splitter=' ', tone_marks='marks'),
                          ['ABC chuàn 123', 'ABC guàn 123'])
 
     def test_get_pinyins_long_seq(self):
-        text = u"""汉语拼音（Hànyǔ Pīnyīn），
+        text = """汉语拼音（Hànyǔ Pīnyīn），
             簡稱拼音，是一種以拉丁字母作普通话（現代標準漢語）標音的方案，為中文羅馬拼音的國際標準規範。
             汉语拼音在中国大陆作为基础教育内容全面使用，是义务教育的重要内容。在海外，特别是常用現代標準漢語的地区如新加坡、
             马来西亚、菲律宾和美国唐人街等，目前也在汉语教育中进行汉语拼音教学。臺灣自2008年開始，
