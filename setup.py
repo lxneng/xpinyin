@@ -1,12 +1,10 @@
-# -*- coding: utf-8 -*-
-import os
-import io
+from pathlib import Path
 from setuptools import setup
 from setuptools import find_packages
 
-here = os.path.abspath(os.path.dirname(__file__))
-README = io.open(os.path.join(here, 'README.rst'), encoding='UTF-8').read()
-CHANGES = io.open(os.path.join(here, 'CHANGES.rst'), encoding='UTF-8').read()
+here = Path(__file__).resolve().parent
+README = (here / 'README.rst').read_text()
+CHANGES = (here / 'CHANGES.rst').read_text()
 
 setup(name="xpinyin",
       version='0.6.0',

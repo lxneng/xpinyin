@@ -1,5 +1,5 @@
-import os.path
 import re
+from pathlib import Path
 from typing import List, Optional
 
 from xpinyin.combs import get_combs
@@ -50,12 +50,11 @@ class Pinyin:
     .. _chinese_pinyin: https://github.com/flyerhzm/chinese_pinyin
     """
 
-    data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                             'Mandarin.dat')
+    data_path = Path(__file__).resolve().with_name('Mandarin.dat')
 
     def __init__(self, data_path=data_path):
         self.dict = {}
-        with open(data_path) as f:
+        with data_path.open() as f:
             for line in f:
                 k, v = line.split('\t')
                 self.dict[k] = v.rstrip()
