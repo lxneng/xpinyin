@@ -107,15 +107,15 @@ class Pinyin:
         The number of combinations is limited par default to 10 to avoid exponential explosion on long texts.
         """
         all_pinyin_options = []  # a list of lists that we'll fill with all pinyin options for each character
-        flag = 1  # in the list (otherwise, probably not a Chinese character)
+        is_in_list = True  # in the list (otherwise, probably not a Chinese character)
         for char in chars:
             key = f"{ord(char):X}"
             if key not in self.pinyins:
-                if flag == 1:
+                if is_in_list:
                     all_pinyin_options.append([char])  # add as is
+                    is_in_list = False  # within a sequence of non Chinese characters
                 else:
                     all_pinyin_options[-1][-1] += char  # add to previous sequence of non Chinese chars
-                flag = 0  # within a sequence of non Chinese characters
             else:
                 if tone_marks is None:  # in this case we may have duplicates if the variations differ just by the tones
                     char_py_options = []
@@ -131,7 +131,7 @@ class Pinyin:
                     char_options = [o for o in char_py_options[0:last]]
 
                 all_pinyin_options.append([Pinyin.convert_pinyin(c, convert) for c in char_options])
-                flag = 1
+                is_in_list = True
 
         return get_combs(options=all_pinyin_options, splitter=splitter, n=n)
 
