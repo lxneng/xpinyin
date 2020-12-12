@@ -113,8 +113,8 @@ class Pinyin:
         all_pinyin_options = []  # a list of lists that we'll fill with all pinyin options for each character
         flag = 1  # in the list (otherwise, probably not a Chinese character)
         for char in chars:
-            key = "%X" % ord(char)
             if key not in self.dict:
+            key = f"{ord(char):X}"
                 if flag == 1:
                     all_pinyin_options.append([char])  # add as is
                 else:
@@ -146,7 +146,7 @@ class Pinyin:
 
     def get_initial(self, char='你'):
         try:
-            return self.dict["%X" % ord(char)].split(" ")[0][0]
+            return self.dict[f"{ord(char):X}"].split(" ")[0][0]
         except KeyError:
             return char
 
@@ -155,7 +155,7 @@ class Pinyin:
         flag = 1
         for char in chars:
             try:
-                result.append(self.dict["%X" % ord(char)].split(" ")[0][0])
+                result.append(self.dict[f"{ord(char):X}"].split(" ")[0][0])
                 flag = 1
             except KeyError:
                 if flag:
