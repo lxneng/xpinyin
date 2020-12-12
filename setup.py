@@ -1,12 +1,10 @@
-# -*- coding: utf-8 -*-
-import os
-import io
+from pathlib import Path
 from setuptools import setup
 from setuptools import find_packages
 
-here = os.path.abspath(os.path.dirname(__file__))
-README = io.open(os.path.join(here, 'README.rst'), encoding='UTF-8').read()
-CHANGES = io.open(os.path.join(here, 'CHANGES.rst'), encoding='UTF-8').read()
+here = Path(__file__).resolve().parent
+README = (here / 'README.rst').read_text()
+CHANGES = (here / 'CHANGES.rst').read_text()
 
 setup(name="xpinyin",
       version='0.6.0',
@@ -16,13 +14,12 @@ setup(name="xpinyin",
           'Intended Audience :: Developers',
           'License :: OSI Approved :: BSD License',
           'Operating System :: OS Independent',
-          'Programming Language :: Python :: 2',
-          'Programming Language :: Python :: 2.6',
-          'Programming Language :: Python :: 2.7',
           'Programming Language :: Python :: 3',
-          'Programming Language :: Python :: 3.3',
-          'Programming Language :: Python :: 3.4',
           'Programming Language :: Python :: 3.5',
+          'Programming Language :: Python :: 3.6',
+          'Programming Language :: Python :: 3.7',
+          'Programming Language :: Python :: 3.8',
+          'Programming Language :: Python :: 3.9',
           'Topic :: Software Development :: Libraries :: Python Modules',
       ],
       keywords='pinyin',
