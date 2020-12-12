@@ -29,31 +29,31 @@ Usage
     >>> from xpinyin import Pinyin
     >>> p = Pinyin()
     >>> # default splitter is `-`
-    >>> p.get_pinyin(u"上海")
+    >>> p.get_pinyin("上海")
     'shang-hai'
     >>> # show tone marks
-    >>> p.get_pinyin(u"上海", tone_marks='marks')
+    >>> p.get_pinyin("上海", tone_marks='marks')
     'shàng-hǎi'
-    >>> p.get_pinyin(u"上海", tone_marks='numbers')
+    >>> p.get_pinyin("上海", tone_marks='numbers')
     >>> 'shang4-hai3'
     >>> # remove splitter
-    >>> p.get_pinyin(u"上海", '')
+    >>> p.get_pinyin("上海", '')
     'shanghai'
     >>> # set splitter as whitespace
-    >>> p.get_pinyin(u"上海", ' ')
+    >>> p.get_pinyin("上海", ' ')
     'shang hai'
-    >>> p.get_initial(u"上")
+    >>> p.get_initial("上")
     'S'
-    >>> p.get_initials(u"上海")
+    >>> p.get_initials("上海")
     'S-H'
-    >>> p.get_initials(u"上海", u'')
+    >>> p.get_initials("上海", '')
     'SH'
-    >>> p.get_initials(u"上海", u' ')
+    >>> p.get_initials("上海", ' ')
     'S H'
     >>> # get combinations of the multiple readings of the characters
-    >>> p.get_pinyins(u'模型', splitter=u' ', tone_marks='marks')
+    >>> p.get_pinyins('模型', splitter=' ', tone_marks='marks')
     ['mó xíng', 'mú xíng']
-    >>> p.get_pinyins(u'模样', splitter=u' ', tone_marks='marks')
+    >>> p.get_pinyins('模样', splitter=' ', tone_marks='marks')
     ['mó yáng', 'mó yàng', 'mó xiàng', 'mú yáng', 'mú yàng', 'mú xiàng']
 
 
