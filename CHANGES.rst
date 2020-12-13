@@ -1,6 +1,15 @@
 Changelog
 =========
 
+0.7.0 - Dec. 13, 2020
+----------------------
+
+- Modernize Python versions, 3.6 - 3.9
+  
+  https://github.com/lxneng/xpinyin/pull/47
+  https://github.com/lxneng/xpinyin/pull/48
+  https://github.com/lxneng/xpinyin/pull/49
+
 0.6.0 - Dec. 11, 2020
 ----------------------
 
