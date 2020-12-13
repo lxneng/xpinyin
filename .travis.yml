@@ -9,4 +9,4 @@ python:
   - "3.9"
 install:
   - pip install -r requirements-dev.txt
-script: pytest
+script: tox
