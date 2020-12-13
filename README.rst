@@ -1,6 +1,9 @@
 xpinyin
 ==========
 
+.. image:: https://github.com/lxneng/xpinyin/workflows/CI/badge.svg
+   :target: https://github.com/lxneng/xpinyin/actions?query=workflow%3ACI
+
 .. image:: https://img.shields.io/travis/lxneng/xpinyin.svg
     :target: https://travis-ci.org/lxneng/xpinyin
 
