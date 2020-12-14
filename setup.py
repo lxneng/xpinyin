@@ -29,4 +29,9 @@ setup(name="xpinyin",
       test_suite='xpinyin.tests',
       package_dir={'': 'src'},
       include_package_data=True,
+      extras_require={
+          "test": [
+              "pytest>=6.2.0"
+          ],
+      },
       license="BSD")
