@@ -1,6 +1,13 @@
 Changelog
 =========
 
+0.7.2 - Dec. 14, 2020
+----------------------
+
+- Improve func `get_initials`, added with retroflex options, resolve #39
+- Better testing
+  https://github.com/lxneng/xpinyin/pull/50
+
 0.7.0 - Dec. 13, 2020
 ----------------------
 

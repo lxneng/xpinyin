@@ -13,8 +13,9 @@ xpinyin
 .. image:: https://img.shields.io/pypi/dm/xpinyin.svg
     :target: https://pypi.python.org/pypi/xpinyin/
 
-translate chinese hanzi to pinyin by python, inspired by flyerhzm’s
-`chinese\_pinyin`_ gem
+
+Translate Chinese hanzi to pinyin (拼音) by Python, 汉字转拼音
+
 
 Install
 ----------

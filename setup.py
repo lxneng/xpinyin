@@ -7,8 +7,8 @@ README = (here / 'README.rst').read_text()
 CHANGES = (here / 'CHANGES.rst').read_text()
 
 setup(name="xpinyin",
-      version='0.7.1',
-      description="translate chinese hanzi to pinyin by python",
+      version='0.7.2',
+      description="Translate Chinese hanzi to pinyin (拼音) by Python, 汉字转拼音",
       long_description=README + '\n\n' + CHANGES,
       classifiers=[
           'Intended Audience :: Developers',

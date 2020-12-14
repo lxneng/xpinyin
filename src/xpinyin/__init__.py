@@ -14,10 +14,9 @@ PinyinToneMark = {
 
 
 class Pinyin:
-    """translate chinese hanzi to pinyin by python, inspired by flyerhzm’s
-    `chinese_pinyin`_ gem
+    """Translate Chinese hanzi to pinyin (拼音) by Python, 汉字转拼音
 
-    usage
+    Usage
     -----
     ::
 
@@ -41,22 +40,27 @@ class Pinyin:
         'S'
         >>> p.get_initials("上海")
         'S-H'
-        >>> p.get_initials("上海", u'')
+        >>> p.get_initials("上海", '')
         'SH'
-        >>> p.get_initials("上海", u' ')
+        >>> p.get_initials("上海", ' ')
         'S H'
-
-    请输入utf8编码汉字
-    .. _chinese_pinyin: https://github.com/flyerhzm/chinese_pinyin
+        >>> # get_initials with retroflex, #39
+        >>> p.get_initials("上海", splitter='-', with_retroflex=True)
+        'SH-H'
+        >>> # get combinations of the multiple readings of the characters
+        >>> p.get_pinyins('模型', splitter=' ', tone_marks='marks')
+        ['mó xíng', 'mú xíng']
+        >>> p.get_pinyins('模样', splitter=' ', tone_marks='marks')
+        ['mó yáng', 'mó yàng', 'mó xiàng', 'mú yáng', 'mú yàng', 'mú xiàng']
     """
 
     data_path = Path(__file__).resolve().with_name('Mandarin.dat')
 
-    def __init__(self, data_path=data_path):
+    def __init__(self, data_path: str = data_path) -> None:
         self.pinyins = dict(tuple(line.split('\t', maxsplit=1)) for line in data_path.read_text().splitlines())
 
     @staticmethod
-    def decode_pinyin(s):
+    def decode_pinyin(s: str) -> str:
         s = s.lower()
         r = ""
         t = ""
@@ -92,7 +96,7 @@ class Pinyin:
         return r
 
     @staticmethod
-    def convert_pinyin(word, convert):
+    def convert_pinyin(word: str, convert: str) -> str:
         if convert == 'capitalize':
             return word.capitalize()
         if convert == 'lower':
