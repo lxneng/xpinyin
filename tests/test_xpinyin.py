@@ -39,6 +39,12 @@ def test_get_initials_with_splitter(pinyin):
     assert pinyin.get_initials('你好', '') == 'NH'
 
 
+def test_get_initials_with_retroflex(pinyin):
+    assert pinyin.get_initials('上海', '-', True) == 'SH-H'
+    assert pinyin.get_initials('知识', '-', True) == 'ZH-SH'
+    assert pinyin.get_initials('文字', '-', True) == 'W-Z'
+
+
 # --- testing combinations auxiliary functions ---
 
 def test_get_comb_indexes(pinyin):

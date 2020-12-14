@@ -140,23 +140,15 @@ class Pinyin:
 
         return self.get_pinyins(chars, splitter=splitter, tone_marks=tone_marks, convert=convert, n=1)[0]
 
-    def get_initial(self, char='你'):
+    def get_initial(self, char: str, with_retroflex: bool = False) -> str:
         try:
-            return self.pinyins[f"{ord(char):X}"].split(" ")[0][0]
+            first_pinyin = self.pinyins[f"{ord(char):X}"].split(" ")[0]
+            if with_retroflex and (first_pinyin[:2] in ('ZH', 'CH', 'SH')):
+                return first_pinyin[:2]
+            else:
+                return first_pinyin[0]
         except KeyError:
             return char
 
-    def get_initials(self, chars='你好', splitter='-'):
-        result = []
-        flag = 1
-        for char in chars:
-            try:
-                result.append(self.pinyins[f"{ord(char):X}"].split(" ")[0][0])
-                flag = 1
-            except KeyError:
-                if flag:
-                    result.append(char)
-                else:
-                    result[-1] += char
-
-        return splitter.join(result)
+    def get_initials(self, chars: str, splitter: str = '-', with_retroflex: bool = False):
+        return splitter.join([self.get_initial(char, with_retroflex=with_retroflex) for char in chars])

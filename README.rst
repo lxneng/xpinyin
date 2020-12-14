@@ -53,16 +53,11 @@ Usage
     'SH'
     >>> p.get_initials("上海", ' ')
     'S H'
+    >>> # get_initials with retroflex, #39
+    >>> p.get_initials("上海", splitter='-', with_retroflex=True)
+    'SH-H'
     >>> # get combinations of the multiple readings of the characters
     >>> p.get_pinyins('模型', splitter=' ', tone_marks='marks')
     ['mó xíng', 'mú xíng']
     >>> p.get_pinyins('模样', splitter=' ', tone_marks='marks')
     ['mó yáng', 'mó yàng', 'mó xiàng', 'mú yáng', 'mú yàng', 'mú xiàng']
-
-
-
-请输入utf8编码汉字
-
-
-
-.. _chinese\_pinyin: https://github.com/flyerhzm/chinese_pinyin
