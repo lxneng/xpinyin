@@ -1,6 +1,8 @@
 xpinyin
 ==========
 
+Translate Chinese hanzi to pinyin (拼音) by Python, 汉字转拼音
+
 .. image:: https://github.com/lxneng/xpinyin/workflows/Tests/badge.svg
    :target: https://github.com/lxneng/xpinyin/actions?query=workflow%3ATests
 
@@ -14,21 +16,27 @@ xpinyin
     :target: https://pypi.python.org/pypi/xpinyin/
 
 
-Translate Chinese hanzi to pinyin (拼音) by Python, 汉字转拼音
-
-
 Install
 ----------
 
-::
+Python version >= 3.6
 
-    pip install xpinyin
+.. code-block:: python
+
+    pip install -U xpinyin
+
+
+Python version < 3.6
+
+.. code-block:: python
+
+    pip install xpinyin==0.6.0
 
 
 Usage
 -----
 
-::
+.. code-block:: python
 
     >>> from xpinyin import Pinyin
     >>> p = Pinyin()
