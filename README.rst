@@ -27,9 +27,7 @@ Install
 
 Usage
 -----
-
-::
-
+:: Python
     >>> from xpinyin import Pinyin
     >>> p = Pinyin()
     >>> # default splitter is `-`
