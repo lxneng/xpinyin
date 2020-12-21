@@ -1,6 +1,12 @@
 Changelog
 =========
 
+0.7.6 - Dec. 21, 2020
+----------------------
+
+- Fix typing of the Pinyin's data_path argument
+  https://github.com/lxneng/xpinyin/pull/53
+
 0.7.5 - Dec. 21, 2020
 ----------------------
 
