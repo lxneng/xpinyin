@@ -30,7 +30,7 @@ Python version < 3.6
 
 .. code-block:: python
 
-    pip install xpinyin==0.6.0
+    pip install xpinyin==0.5.7
 
 
 Usage
@@ -65,7 +65,7 @@ Usage
     >>> # get_initials with retroflex, #39
     >>> p.get_initials("上海", splitter='-', with_retroflex=True)
     'SH-H'
-    >>> # get combinations of the multiple readings of the characters
+    >>> # New in version 0.7.0, get combinations of the multiple readings of the characters
     >>> p.get_pinyins('模型', splitter=' ', tone_marks='marks')
     ['mó xíng', 'mú xíng']
     >>> p.get_pinyins('模样', splitter=' ', tone_marks='marks')
