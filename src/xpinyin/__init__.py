@@ -56,8 +56,9 @@ class Pinyin:
 
     data_path = Path(__file__).resolve().with_name('Mandarin.dat')
 
-    def __init__(self, data_path: str = data_path) -> None:
-        self.pinyins = dict(tuple(line.split('\t', maxsplit=1)) for line in data_path.read_text().splitlines())
+    def __init__(self, data_path: str = str(data_path)) -> None:
+        lines = Path(data_path).read_text().splitlines()
+        self.pinyins = dict(tuple(line.split('\t', maxsplit=1)) for line in lines)
 
     @staticmethod
     def decode_pinyin(s: str) -> str:
